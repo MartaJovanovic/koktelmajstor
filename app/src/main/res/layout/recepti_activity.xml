@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Recepti">
+
+    <LinearLayout
+        android:id="@+id/lista"
+        android:layout_width="265dp"
+        android:layout_height="635dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="92dp"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filter"
+        android:layout_width="157dp"
+        android:layout_height="639dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="92dp"></LinearLayout>
+
+    <Button
+        android:id="@+id/vrsta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginEnd="60dp"
+        android:onClick="sortirajPoVrsti"
+        android:text="Vrsta"
+        app:layout_constraintEnd_toStartOf="@+id/jacina"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <Button
+        android:id="@+id/jacina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="sortirajPoJacini"
+        android:text="Jacina"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <Button
+        android:id="@+id/nazad"
+        android:layout_width="94dp"
+        android:layout_height="38dp"
+        android:text="Nazad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="nazad"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

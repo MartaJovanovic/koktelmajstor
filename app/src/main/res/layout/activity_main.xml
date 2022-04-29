@@ -7,37 +7,62 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/omiljeni"
         android:layout_width="133dp"
         android:layout_height="69dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="prelazakNaOmilj"
         android:text="Omiljeni"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="391dp"
-        android:onClick="prelazakNaOmilj"/>
+        app:layout_constraintBottom_toTopOf="@+id/igre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recepti" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/igre"
         android:layout_width="133dp"
         android:layout_height="69dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="132dp"
+        android:onClick="prelazakNaIgr"
         android:text="Igre"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="477dp"
-        android:onClick="prelazakNaIgr"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/omiljeni" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="125dp"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="139dp"
+        android:layout_marginBottom="49dp"
+        app:layout_constraintBottom_toTopOf="@+id/recepti"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/recepti"
         android:layout_width="133dp"
         android:layout_height="69dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="prelazakNaRecp"
         android:text="Recepti"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="302dp"
-        android:onClick="prelazakNaRecp"/>
+        app:layout_constraintBottom_toTopOf="@+id/omiljeni"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
