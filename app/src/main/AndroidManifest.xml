@@ -20,6 +20,8 @@
         </activity>
     <activity android:name=".Recepti" >
     </activity>
+        <activity android:name=".Igre" >
+        </activity>
     </application>
 
 </manifest>

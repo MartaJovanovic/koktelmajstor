@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void prelazakNaIgr(View view) {
+        Intent i=new Intent(this, Igre.class);
+        startActivity(i);
+
+
+
+
     }
 
 }
