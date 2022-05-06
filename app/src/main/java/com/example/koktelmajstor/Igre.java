@@ -1,11 +1,13 @@
 package com.example.koktelmajstor;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,11 +48,26 @@ public class Igre extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.igre_activity);
         karte = findViewById(R.id.karte);
+        shuffle(slike);
         karte.setImageResource(slike[0]);
         pravila = findViewById(R.id.pravila);
-        pravila.setImageResource(slike[0]);
+        pravila.setImageResource(R.drawable.crno);
 
+    }
 
+    public static void shuffle(int br[])
+    {
+        for (int i = br.length - 1; i >= 1; i--)
+        {
+            Random rand = new Random();
+            int j = rand.nextInt(i + 1);
+            zamena(br, i, j);
+        }
+    }
+    private static void zamena(int[] br, int i, int j) {
+        int k = br[i];
+        br[i] = br[j];
+        br[j] = k;
     }
 
     public void dalje(View view){
@@ -59,6 +76,11 @@ public class Igre extends AppCompatActivity {
             broj = 0;
         }
         karte.setImageResource(slike[broj]);
+    }
+
+    public void josIgara(View view){
+        Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse( "https://drinkinggamezone.com/card-drinking-games/" ) );
+        startActivity( browse );
     }
 
     public void nazad(View view) {
