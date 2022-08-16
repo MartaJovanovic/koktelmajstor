@@ -1,0 +1,19 @@
+
+  [
+  {
+    "id": 1,
+    "naziv": "koktel1",
+    "recept": "sastojak1,sastojak2,sastojak3",
+    "slika": "slika1",
+    "tagovi": "tag1,tag2,tag3,tag4",
+    "omiljen": false
+  },
+    {
+      "id": 2,
+      "naziv": "koktel2",
+      "recept": "sastojak21,sastojak22,sastojak23",
+      "slika": "slika2",
+      "tagovi": "tag21,tag22,tag23,tag24",
+      "omiljen": false
+    }
+    ]
