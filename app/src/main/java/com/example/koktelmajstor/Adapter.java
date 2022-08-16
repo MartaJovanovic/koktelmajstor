@@ -19,6 +19,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private ArrayList<Kartica> lista;
     MOnClickListener aOnClickListener;
 
+
     public Adapter(ArrayList<Kartica> lista,MOnClickListener aOnClickListener){
         this.lista = lista;
         this.aOnClickListener=aOnClickListener;
@@ -29,11 +30,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem = layoutInflater.inflate(R.layout.kartice,parent,false);
         ViewHolder viewHolder = new ViewHolder(listItem, aOnClickListener);
         return viewHolder;
     }
+
 
     // u ovoj metodi postavljamo podatke, konkretne vrednosti, stavke nase listu na UI
     @Override
@@ -42,7 +45,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         // SVUDA UMESTO NJE PROSLEDITE holder.getAdapterPosition();
 
         Kartica kartica = lista.get(position);
-        holder.textView.setText(kartica.getNaziv());
+        holder.naslov.setText(kartica.getNaziv());
+        holder.recept.setText(kartica.getRecept());
+//        holder.imageView.setImageResource(R.drawable.crno);
 
     }
 
@@ -54,12 +59,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     // ViewHolder klasa sluzi za instanciranje UI stavke
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView textView;
+        TextView naslov;
+        TextView recept;
+        ImageView imageView;
         MOnClickListener mOnClickListener;
 
         public ViewHolder(@NonNull View itemView, MOnClickListener mOnClickListener) {
             super(itemView);
-         //   textView = itemView.findViewById(R.id.textView);
+            naslov = itemView.findViewById(R.id.naslov);
+            recept = itemView.findViewById(R.id.recept);
             itemView.setOnClickListener(this);
             this.mOnClickListener=mOnClickListener;
         }
