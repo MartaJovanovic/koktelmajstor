@@ -2,6 +2,7 @@ package com.example.koktelmajstor;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,8 +22,10 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -66,9 +69,7 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
 
         dbHelper = new MyDBHelperOmiljeni(this);
 
-
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 filter(kartice);
@@ -76,37 +77,42 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
         });
 
         tekila.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                filter(kartice);
-            }}
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                  filter(kartice);
+                                              }
+                                          }
         );
         vodka.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                filter(kartice);
-            }}
+                                             @Override
+                                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                 filter(kartice);
+                                             }
+                                         }
         );
         rum.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                filter(kartice);
-            }}
+                                           @Override
+                                           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                               filter(kartice);
+                                           }
+                                       }
         );
         dzin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                filter(kartice);
-            }}
+                                            @Override
+                                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                filter(kartice);
+                                            }
+                                        }
         );
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
 
         omiljeni = (boolean) getIntent().getSerializableExtra("omiljeni");
-        if(!omiljeni) kartice = vratiSve();
+        if (!omiljeni) kartice = vratiSve();
         else kartice = vratiOmiljene();
         filter(kartice);
 
@@ -120,14 +126,14 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
         Log.i("JACINA", "> JACINA: " + j + "\n");
         for (int i = 0; i < k.size(); i++) {
             String[] tagovi = k.get(i).getTagovi().split(",");
-            if((sadrzi(tagovi,uslovi)) && ima(tagovi,j)) nova.add(k.get(i));
+            if ((sadrzi(tagovi, uslovi)) && ima(tagovi, j)) nova.add(k.get(i));
         }
 
-        adapter = new Adapter(nova, this);
+        adapter = new Adapter(nova, this, this);
         recyclerView.setAdapter(adapter);
     }
 
-    public boolean sadrzi(String[] prvi, String[] drugi){
+    public boolean sadrzi(String[] prvi, String[] drugi) {
         if (drugi[0].equals("")) return true;
         for (int i = 0; i < prvi.length; i++) {
             for (int j = 0; j < drugi.length; j++) {
@@ -137,22 +143,22 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
         return false;
     }
 
-    public boolean ima(String[] tagovi, String ja){
-        if(ja.equals("sve")) return true;
+    public boolean ima(String[] tagovi, String ja) {
+        if (ja.equals("sve")) return true;
         for (int i = 0; i < tagovi.length; i++) {
-                if (tagovi[i].equals(ja)) return true;
+            if (tagovi[i].equals(ja)) return true;
         }
         return false;
     }
 
-    public String jacina(){
+    public String jacina() {
         if (slabo.isChecked()) return "slabo";
         if (srednje.isChecked()) return "srednje";
         if (jako.isChecked()) return "jako";
         return "sve";
     }
 
-    public String[] uslovi(){
+    public String[] uslovi() {
         String[] u = new String[4];
         u[0] = "";
         int k = 0;
@@ -164,28 +170,28 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
     }
 
     public void nazad(View view) {
-        Intent i=new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
     @Override
     public void onClick(int pozicija) {
-        if(!omiljeni) {
+        if (!omiljeni) {
             dbHelper.dodajRed(kartice.get(pozicija).getId());
-        }
-        else {
+        } else {
             dbHelper.obrisiRed(kartice.get(pozicija).getId());
             kartice.remove(pozicija);
-            Toast.makeText(this,"IZBRISANO: " + kartice.get(pozicija).getId(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "IZBRISANO: " + kartice.get(pozicija).getId(), Toast.LENGTH_SHORT).show();
             filter(kartice);
         }
     }
 
-    public ArrayList<Kartica> vratiSve(){
+    public ArrayList<Kartica> vratiSve() {
         ArrayList<Kartica> k = new ArrayList<>();
         String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "kokteli.json");
         Gson gson = new Gson();
-        Type karticeTip = new TypeToken<List<Kartica>>() { }.getType();
+        Type karticeTip = new TypeToken<List<Kartica>>() {
+        }.getType();
         k = gson.fromJson(jsonFileString, karticeTip);
         for (int i = 0; i < k.size(); i++) {
             Log.i("data", "> Item " + i + "\n" + k.get(i));
@@ -194,7 +200,7 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
     }
 
 
-    public ArrayList<Kartica> vratiOmiljene(){
+    public ArrayList<Kartica> vratiOmiljene() {
         ArrayList<Kartica> sve = vratiSve();
         ArrayList<Kartica> k = new ArrayList<>();
         ArrayList<Integer> omilj = dbHelper.vratiOmiljene();
@@ -205,6 +211,11 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
 
         return k;
     }
+    public Drawable ucitajSliku(String s) throws IOException {
+        InputStream ims = getAssets().open("mohitoN.jpg");
+        return Drawable.createFromStream(ims, null);
+    }
+
 
 //    public void menjanjeJsona(){
 //
@@ -237,7 +248,7 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
 //        }
 //    }
 
-//    private String readFromFile() {
+    //    private String readFromFile() {
 //
 //        String ret = "";
 //        InputStream inputStream = null;
@@ -289,4 +300,5 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
 //        }
 //        return k;
 //    }
+
 }
