@@ -2,18 +2,90 @@
   [
   {
     "id": 1,
-    "naziv": "koktel1",
-    "recept": "sastojak1,sastojak2,sastojak3",
+    "naziv": "Blue Lagoon",
+    "recept": "30ml vodke\n100ml sprajta\n10ml limunovog soka\n10ml blue curacao",
     "slika": "slika1",
-    "tagovi": "tag1,tag2,tag3,tag4",
+    "tagovi": "vodka,srednje",
     "omiljen": false
   },
     {
       "id": 2,
-      "naziv": "koktel2",
-      "recept": "sastojak21,sastojak22,sastojak23",
+      "naziv": "Dzin Tonic",
+      "recept": "60ml dzina\n150ml tonica",
       "slika": "slika2",
-      "tagovi": "tag21,tag22,tag23,tag24",
+      "tagovi": "dzin,slabo",
+      "omiljen": false
+    },
+    {
+      "id": 3,
+      "naziv": "Sex on the beach",
+      "recept": "45ml vodke\n20ml archers \n60ml soka od pomorandže\n60ml soka od brusnice\nobojite grenadinom",
+      "slika": "slika2",
+      "tagovi": "vodka,srednje",
+      "omiljen": false
+    },
+    {
+      "id": 4,
+      "naziv": "Blue Frog",
+      "recept": "30ml tekile\n30ml vodke\n30ml dzina\n200ml Red Bulla\n30ml Blue Curacao",
+      "slika": "slika2",
+      "tagovi": "vodka,tekila,dzin,jako",
+      "omiljen": false
+    },
+    {
+      "id": 5,
+      "naziv": "Mojito",
+      "recept": "sok od pola limete \n8,9 listića nane\n2 kašičice šećera\n50 ml belog ruma\n1 dcl soda vode",
+      "slika": "slika2",
+      "tagovi": "rum,slabo",
+      "omiljen": false
+    },
+    {
+      "id": 6,
+      "naziv": "Margarita",
+      "recept": "50 ml tekile\n30 ml Triple sec\n30 ml soka od limete\n1 komad limete za ukras",
+      "slika": "slika2",
+      "tagovi": "tekila,srednje",
+      "omiljen": false
+    },
+    {
+      "id": 7,
+      "naziv": "Head Fucker",
+      "recept": "20ml vodke\n10ml zlatne tekile\n10ml dzina\n10ml ruma\n10ml malibua\n10ml likera od breskve",
+      "slika": "slika2",
+      "tagovi": "tekila,vodka,dzin,rum,jako",
+      "omiljen": false
+    },
+    {
+      "id": 8,
+      "naziv": "Mai Tai",
+      "recept": "50 ml srebrnog ruma\n20 ml tamnog ruma\n20 ml sveže ceđenog soka od pomorandže \n20 ml sok od svežeg ananasa\n10 ml bademovog sirupa ",
+      "slika": "slika2",
+      "tagovi": "rum,srednje",
+      "omiljen": false
+    },
+    {
+      "id": 9,
+      "naziv": "Tequila sunrise",
+      "recept": "100 ml soka od pomorandže\n40 ml tekile\nobojite grenadinom",
+      "slika": "slika2",
+      "tagovi": "tekila,slabo",
+      "omiljen": false
+    },
+    {
+      "id": 10,
+      "naziv": "Cosmopolitan",
+      "recept": "30 ml votke\n15 ml soka od brusnice\n15 ml triple sec likera\n15 ml soka od limuna ili limete",
+      "slika": "slika2",
+      "tagovi": "vodka,slabo",
+      "omiljen": false
+    },
+    {
+      "id": 11,
+      "naziv": "Martini",
+      "recept": "50 ml džina,\n25 ml suvog belog vermuta\n1-2 masline",
+      "slika": "slika2",
+      "tagovi": "dzin,srednje",
       "omiljen": false
     }
-    ]
+  ]

@@ -4,43 +4,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/purple_500"
     tools:context=".Recepti">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaRecepata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
         android:layout_weight="2"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toEndOf="@+id/filter"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jacina"
         tools:listitem="@layout/support_simple_spinner_dropdown_item" />
 
     <LinearLayout
         android:id="@+id/filter"
-        android:layout_width="157dp"
-        android:layout_height="639dp"
+        android:layout_width="114dp"
+        android:layout_height="641dp"
+        android:layout_marginTop="3dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="92dp"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/jacina">
 
-    <Button
-        android:id="@+id/jacina"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:onClick="sortirajPoJacini"
-        android:text="Jacina"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="34dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="293dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="94dp"
+                android:layout_height="82dp"
+                android:layout_weight="1"
+                android:foregroundTint="#E6D2D2"
+                android:text="Filter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            <CheckBox
+                android:id="@+id/tekila"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="tekila" />
+
+            <CheckBox
+                android:id="@+id/vodka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="vodka" />
+
+            <CheckBox
+                android:id="@+id/rum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="rum" />
+
+            <CheckBox
+                android:id="@+id/dzin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="dzin" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/nazad"
         android:layout_width="94dp"
         android:layout_height="38dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:onClick="nazad"
         android:text="Nazad"
+        app:layout_constraintBottom_toTopOf="@+id/jacina"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="nazad"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/jacina"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nazad"
+        tools:layout_editor_absoluteY="39dp">
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/sve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="sve"
+                />
+
+            <RadioButton
+                android:id="@+id/slabo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="slabo" />
+
+            <RadioButton
+                android:id="@+id/srednje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="srednje" />
+
+            <RadioButton
+                android:id="@+id/jako"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="jako" />
+
+
+        </RadioGroup>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
