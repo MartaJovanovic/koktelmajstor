@@ -18,10 +18,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void prelazakNaRecp(View view) {
         Intent i=new Intent(this, Recepti.class);
+        i.putExtra("omiljeni", false);
         startActivity(i);
     }
 
     public void prelazakNaOmilj(View view) {
+        Intent i=new Intent(this, Recepti.class);
+        i.putExtra("omiljeni", true);
+        startActivity(i);
     }
 
 

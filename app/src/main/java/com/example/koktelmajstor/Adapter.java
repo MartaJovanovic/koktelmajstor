@@ -25,8 +25,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         this.aOnClickListener=aOnClickListener;
     }
 
-    // U ovoj metodi se inflatuje layout koji prikazuje jednu stavku liste
-    // i prosledjuje viewHolderu nasu listu
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,6 +54,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public int getItemCount() {
         return lista.size();
     }
+
+
 
     // ViewHolder klasa sluzi za instanciranje UI stavke
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

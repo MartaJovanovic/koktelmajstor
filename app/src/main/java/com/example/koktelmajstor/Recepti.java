@@ -17,12 +17,19 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.List;
 
 import java.util.ArrayList;
 
-public class Recepti extends AppCompatActivity implements Adapter.MOnClickListener{
+public class Recepti extends AppCompatActivity implements Adapter.MOnClickListener {
 
     ArrayList<Kartica> kartice;
     Adapter adapter;
@@ -36,21 +43,14 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
     CheckBox vodka;
     CheckBox rum;
     CheckBox dzin;
-    ArrayList<Kartica> prikaz;
+    MyDBHelperOmiljeni dbHelper;
+    boolean omiljeni;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.recepti_activity);
 
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "kokteli.json");
-        Log.i("data", jsonFileString);
-        Gson gson = new Gson();
-        Type karticeTip = new TypeToken<List<Kartica>>() { }.getType();
-        kartice = gson.fromJson(jsonFileString, karticeTip);
-        for (int i = 0; i < kartice.size(); i++) {
-            Log.i("data", "> Item " + i + "\n" + kartice.get(i));
-        }
 
         rg = findViewById(R.id.rg);
         sve = findViewById(R.id.sve);
@@ -63,7 +63,9 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
         dzin = findViewById(R.id.dzin);
         recyclerView = findViewById(R.id.listaRecepata);
 
-        filter(kartice);
+
+        dbHelper = new MyDBHelperOmiljeni(this);
+
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -97,6 +99,16 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
                 filter(kartice);
             }}
         );
+
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        omiljeni = (boolean) getIntent().getSerializableExtra("omiljeni");
+        if(!omiljeni) kartice = vratiSve();
+        else kartice = vratiOmiljene();
+        filter(kartice);
 
     }
 
@@ -158,9 +170,72 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
 
     @Override
     public void onClick(int pozicija) {
-
+        if(!omiljeni) {
+            dbHelper.dodajRed(kartice.get(pozicija).getId());
+        }
+        else {
+            dbHelper.obrisiRed(kartice.get(pozicija).getId());
+            kartice.remove(pozicija);
+            Toast.makeText(this,"IZBRISANO: " + kartice.get(pozicija).getId(),Toast.LENGTH_SHORT).show();
+            filter(kartice);
+        }
     }
 
+    public ArrayList<Kartica> vratiSve(){
+        ArrayList<Kartica> k = new ArrayList<>();
+        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "kokteli.json");
+        Gson gson = new Gson();
+        Type karticeTip = new TypeToken<List<Kartica>>() { }.getType();
+        k = gson.fromJson(jsonFileString, karticeTip);
+        for (int i = 0; i < k.size(); i++) {
+            Log.i("data", "> Item " + i + "\n" + k.get(i));
+        }
+        return k;
+    }
+
+
+    public ArrayList<Kartica> vratiOmiljene(){
+        ArrayList<Kartica> sve = vratiSve();
+        ArrayList<Kartica> k = new ArrayList<>();
+        ArrayList<Integer> omilj = dbHelper.vratiOmiljene();
+
+        for (int i = 0; i < sve.size(); i++) {
+            if (omilj.contains(sve.get(i).getId())) k.add(sve.get(i));
+        }
+
+        return k;
+    }
+
+//    public void menjanjeJsona(){
+//
+//        JSONObject koktel = new JSONObject();
+//        koktel.put("firstName", "Lokesh");
+//        koktel.put("lastName", "Gupta");
+//        koktel.put("website", "howtodoinjava.com");
+//
+//        JSONObject employeeDetails2 = new JSONObject();
+//        employeeDetails2.put("firstName", "Brian");
+//        employeeDetails2.put("lastName", "Schultz");
+//        employeeDetails2.put("website", "example.com");
+//
+//        JSONObject employeeObject2 = new JSONObject();
+//        employeeObject2.put("employee", employeeDetails2);
+//
+//        //Add employees to list
+//        JSONArray employeeList = new JSONArray();
+//        employeeList.add(employeeObject);
+//        employeeList.add(employeeObject2);
+//
+//        //Write JSON file
+//        try (FileWriter file = new FileWriter("employees.json")) {
+//            //We can write any JSONArray or JSONObject instance to the file
+//            file.write(employeeList.toJSONString());
+//            file.flush();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    private String readFromFile() {
 //
