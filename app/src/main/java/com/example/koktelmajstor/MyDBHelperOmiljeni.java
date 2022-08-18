@@ -53,7 +53,7 @@ public class MyDBHelperOmiljeni extends SQLiteOpenHelper {
         if (r==-1){
             Toast.makeText(context,"NIJE DODATO",Toast.LENGTH_SHORT).show();
         }
-        else {Toast.makeText(context,"USPESNO DODATO U OMILJENE",Toast.LENGTH_SHORT).show();}
+        else {Toast.makeText(context,"DODATO U OMILJENE",Toast.LENGTH_SHORT).show();}
     }
 
     public void obrisiRed(int id){

@@ -6,63 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/omiljeni"
-        android:layout_width="133dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="144dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="prelazakNaOmilj"
-        android:text="Omiljeni"
-        app:layout_constraintBottom_toTopOf="@+id/igre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recepti" />
-
-    <Button
-        android:id="@+id/igre"
-        android:layout_width="133dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="144dp"
-        android:layout_marginBottom="132dp"
-        android:onClick="prelazakNaIgr"
-        android:text="Igre"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/omiljeni" />
-
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginEnd="139dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toTopOf="@+id/recepti"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="219dp"
+        android:layout_height="204dp"
+        android:layout_marginStart="85dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="37dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/recepti"
-        android:layout_width="133dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="144dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="prelazakNaRecp"
-        android:text="Recepti"
-        app:layout_constraintBottom_toTopOf="@+id/omiljeni"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+    <LinearLayout
+        android:layout_width="139dp"
+        android:layout_height="376dp"
+        android:layout_marginStart="124dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.412">
+
+        <Button
+            android:id="@+id/recepti"
+            android:layout_width="133dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="prelazakNaRecp"
+            android:text="Recepti" />
+
+        <Button
+            android:id="@+id/omiljeni"
+            android:layout_width="133dp"
+            android:layout_height="69dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="prelazakNaOmilj"
+            android:text="Omiljeni" />
+
+        <Button
+            android:id="@+id/igre"
+            android:layout_width="133dp"
+            android:layout_height="69dp"
+            android:onClick="prelazakNaIgr"
+            android:text="Igre" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

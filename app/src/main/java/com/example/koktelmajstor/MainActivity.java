@@ -2,11 +2,14 @@ package com.example.koktelmajstor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
+ImageView slika;
 
 
     @Override
@@ -14,7 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        slika = findViewById(R.id.logo);
+        slika.setImageResource(R.drawable.logo);
+
     }
+
 
     public void prelazakNaRecp(View view) {
         Intent i=new Intent(this, Recepti.class);

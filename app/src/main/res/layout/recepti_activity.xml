@@ -38,6 +38,8 @@
                 android:layout_weight="1"
                 android:foregroundTint="#E6D2D2"
                 android:text="Filter"
+                android:textStyle="bold"
+                android:textColor="@color/purple_500"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <CheckBox
