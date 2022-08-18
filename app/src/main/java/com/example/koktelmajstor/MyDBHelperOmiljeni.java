@@ -40,7 +40,7 @@ public class MyDBHelperOmiljeni extends SQLiteOpenHelper {
     public void dodajRed(int id){
         ArrayList<Integer> lista = vratiOmiljene();
         if(lista.contains(id)) {
-            Toast.makeText(context,"Vec je u omiljenim",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Koktel je vec u omiljenim",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -51,15 +51,20 @@ public class MyDBHelperOmiljeni extends SQLiteOpenHelper {
         long r = db.insert(NAZIV_TABELE, null, vrednost);
         db.close();
         if (r==-1){
-            Toast.makeText(context,"NIJE DODATO",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Nije dodat u omiljene",Toast.LENGTH_SHORT).show();
         }
         else {Toast.makeText(context,"DODATO U OMILJENE",Toast.LENGTH_SHORT).show();}
     }
 
     public void obrisiRed(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        db.delete(NAZIV_TABELE,"id = ?",new String[]{String.valueOf(id)});
+        long r = db.delete(NAZIV_TABELE,"id = ?",new String[]{String.valueOf(id)});
         db.close();
+
+        if (r==-1){
+            Toast.makeText(context," Sistem nije izbrisao koktel iz omiljenih",Toast.LENGTH_SHORT).show();
+        }
+        else {Toast.makeText(context," IZBRISANO IZ OMILJENIH",Toast.LENGTH_SHORT).show();}
 
     }
 

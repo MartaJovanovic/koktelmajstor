@@ -72,35 +72,35 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                filter(kartice);
+               kartice = filter();
             }
         });
 
         tekila.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                               @Override
                                               public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                                  filter(kartice);
+                                                kartice = filter();
                                               }
                                           }
         );
         vodka.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                              @Override
                                              public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                                 filter(kartice);
+                                             kartice = filter();
                                              }
                                          }
         );
         rum.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                            @Override
                                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                               filter(kartice);
+                                               kartice = filter();
                                            }
                                        }
         );
         dzin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                             @Override
                                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                                filter(kartice);
+                                                kartice =  filter();
                                             }
                                         }
         );
@@ -114,23 +114,33 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
         omiljeni = (boolean) getIntent().getSerializableExtra("omiljeni");
         if (!omiljeni) kartice = vratiSve();
         else kartice = vratiOmiljene();
-        filter(kartice);
+        kartice = filter();
 
     }
 
 
-    public void filter(ArrayList<Kartica> k) {
+    public ArrayList<Kartica> filter() {
+        ArrayList<Kartica> k;
+        if (!omiljeni)  k = vratiSve();
+        else  k = vratiOmiljene();
         ArrayList<Kartica> nova = new ArrayList<>();
         String[] uslovi = uslovi();
         String j = jacina();
         Log.i("JACINA", "> JACINA: " + j + "\n");
         for (int i = 0; i < k.size(); i++) {
             String[] tagovi = k.get(i).getTagovi().split(",");
-            if ((sadrzi(tagovi, uslovi)) && ima(tagovi, j)) nova.add(k.get(i));
+            if ((sadrzi(tagovi, uslovi)) && ima(tagovi, j)){
+                Log.i("data", "> Item " + i + "\n" + k.get(i));
+                nova.add(k.get(i));
+            }
         }
-
+        for (int n = 0; n < nova.size(); n++) {
+            Log.i("data", "> Item " + n + "\n" + nova.get(n));
+        }
         adapter = new Adapter(nova, this, this);
         recyclerView.setAdapter(adapter);
+        if (nova.size() == 0) Toast.makeText(this, "Sistem ne može da nađe ni jedan koktel sa zadatim vrednostima", Toast.LENGTH_SHORT).show();
+        return nova;
     }
 
     public boolean sadrzi(String[] prvi, String[] drugi) {
@@ -177,12 +187,11 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
     @Override
     public void onClick(int pozicija) {
         if (!omiljeni) {
-            dbHelper.dodajRed(kartice.get(pozicija).getId());
-        } else {
+            dbHelper.dodajRed(kartice.get(pozicija).getId());}
+        else {
             dbHelper.obrisiRed(kartice.get(pozicija).getId());
             kartice.remove(pozicija);
-            Toast.makeText(this, "IZBRISANO", Toast.LENGTH_SHORT).show();
-            filter(kartice);
+            kartice = filter();
         }
     }
 
@@ -193,9 +202,9 @@ public class Recepti extends AppCompatActivity implements Adapter.MOnClickListen
         Type karticeTip = new TypeToken<List<Kartica>>() {
         }.getType();
         k = gson.fromJson(jsonFileString, karticeTip);
-        for (int i = 0; i < k.size(); i++) {
-            Log.i("data", "> Item " + i + "\n" + k.get(i));
-        }
+//        for (int i = 0; i < k.size(); i++) {
+//            Log.i("data", "> Item " + i + "\n" + k.get(i));
+//        }
         return k;
     }
 

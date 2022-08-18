@@ -7,27 +7,24 @@ public class Kartica {
     private String recept;
     private String slika;
     private String tagovi;
-    private boolean omiljen;
 
 
     public Kartica(){
     }
 
-    public Kartica(String naziv, String recept, String slika, String tagovi, boolean omiljen) {
+    public Kartica(String naziv, String recept, String slika, String tagovi) {
         this.naziv = naziv;
         this.recept = recept;
         this.slika = slika;
         this.tagovi = tagovi;
-        this.omiljen = omiljen;
     }
 
-    public Kartica(int id, String naziv, String recept, String slika, String tagovi, boolean omiljen) {
+    public Kartica(int id, String naziv, String recept, String slika, String tagovi) {
         this.id = id;
         this.naziv = naziv;
         this.recept = recept;
         this.slika = slika;
         this.tagovi = tagovi;
-        this.omiljen = omiljen;
     }
 
     public String getNaziv() {
@@ -70,13 +67,6 @@ public class Kartica {
         this.id = id;
     }
 
-    public boolean isOmiljen() {
-        return omiljen;
-    }
-
-    public void setOmiljen(boolean omiljen) {
-        this.omiljen = omiljen;
-    }
 
     @Override
     public String toString() {
@@ -85,8 +75,7 @@ public class Kartica {
                 ", naziv='" + naziv + '\'' +
                 ", recept='" + recept + '\'' +
                 ", slika='" + slika + '\'' +
-                ", tagovi='" + tagovi + '\'' +
-                ", omiljen=" + omiljen +
+                ", tagovi='" + tagovi +
                 '}';
     }
 }

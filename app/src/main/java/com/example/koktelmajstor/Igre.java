@@ -7,6 +7,8 @@ import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.*;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,6 +75,7 @@ public class Igre extends AppCompatActivity {
     public void dalje(View view){
         broj++;
         if (broj >= slike.length) {
+            Toast.makeText(this, "Spil je promesan i karte krecu ispocetka", Toast.LENGTH_SHORT).show();
             broj = 0;
         }
         karte.setImageResource(slike[broj]);
